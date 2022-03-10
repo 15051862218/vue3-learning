@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .container{
+        width: 1000px;
+        height: 400px;
+       overflow: hidden;
+    }
+    div{
+        padding-left: 20px;
+        float: left;
+    }
+</style>
+<body>
+<div id="app"></div>
+<script src="https://unpkg.com/vue@next"> </script>
+<script>
+
+    const app =Vue.createApp({
+        data(){
+            return{
+                
+                list:[
+                       {
+                           title:"first",
+                           url:"./imgaes/001.jpg",
+                           desc:"图一",
+
+            },
+            {
+                           title:"second",
+                           url:"./imgaes/002.jpg",
+                           desc:"图二",
+
+            },
+            {
+                           title:"third",
+                           url:"./imgaes/003.jpg",
+                           desc:"图三",
+
+            },
+                ],
+            };
+        },
+       
+        template:`
+        <div>
+            <div class="container">
+                <todo-item v-for="(item,index) of list" 
+                :title="item.title"
+                :src="item.url"
+                :desc="item.desc"
+                />
+            </div>
+        
+       ` ,
+    });
+    app.component('todo-item',{
+        props:['title','src','desc'],
+        template:`
+        <div class="todo-item">
+            <h2>{{title}}</h2>
+            <img :src="src" style="width:200px;height:100px"/>
+            <h3>{{desc}}</h3>
+            </div>
+
+        `,
+    });
+
+    app.mount('#app');
+</script>
+</body>
+</html>
