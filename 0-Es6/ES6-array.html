@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数组的解构赋值</title>
+</head>
+<body>
+    <script>
+        let [p1,p2,p3]=["we","sd","wf"]
+        console.log(p2);
+        let [p4,[[p5],p6]]=["we",[["sd"],"wf"]]
+        console.log(p5);
+        let [p7,[[p8],p9]]=["we",[["sd","ksj"],"wf"]]
+        console.log(p7);
+        console.log(p8);
+        console.log(p9);
+        let [p10, ...other]=["sd","s","yu"]
+        console.log(p10);
+        console.log(other);
+        let [p11,p12="sdsad"]=["curry"]
+        console.log(p11);
+        console.log(p12);
+    </script>
+</body>
+</html>

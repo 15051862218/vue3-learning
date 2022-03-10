@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let p=["cu","skdad","skda","jack"];
+        console.log(p.indexOf("cu"))
+        console.log(p.lastIndexOf("skda"))
+
+        let findOne=p.find(function(val,index,arr){
+            return val.includes("cu")
+        })
+        console.log(findOne)
+        let findOneIndex=p.findIndex(function(val,index,arr){
+            return val.includes("cu")
+        })
+        
+        let finOne = p.find((val,index,arr)=>val.includes("cu"))
+     
+    </script>
+</body>
+</html>

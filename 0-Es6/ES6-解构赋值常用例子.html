@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function add([{name:name1,age:age1},{name2:name2,age2:age2}]){
+            return age1+age2;
+        }
+        console.log(add([{name:"jame",age:37},{name:"casd",age:78}]))
+        let a=2;
+        let b=6;
+        [a,b]=[b,a];
+        console.log(a+"------------"+b)
+
+        let map1= new Map();
+        map1.set("p1","curry")
+        map1.set("p2","sd")
+        for(let [key,value] of map1){
+            console.log(`${key}----${value}`)
+            console.log(key+"----"+value)
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+if(true){
+    var externaVal ="externVal";
+}
+function doTest(){
+    var funVal="funVAl";
+    console.log(externaVal+"-------"+funVal );
+
+    
+}
+doTest();
+if(true){
+    console.log(externaVal);//可以访问，不在函数作用域中，if没有作用域
+    console.log(funVAl);//访问不到。funVAl定义在函数里有作用域的
+}
+    </script>
+</body>
+</html>

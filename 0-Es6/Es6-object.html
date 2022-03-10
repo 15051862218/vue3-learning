@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ES6对象定义</title>
+</head>
+<body>
+    <script>
+        class Player{
+            constructor(name,age){
+                this.name=name;
+                this.age=age;
+            }
+            toPrint(){
+                console.log(this.name+"-----"+this.age);
+            }
+        }
+        var play1=new Player("james",45);
+        play1.toPrint();
+
+        class BestPlayer extends Player{
+            constructor(){
+                super()
+                this.name="tom";
+                this.age=34;
+            }
+        }
+        let bestPlayer =new BestPlayer();
+        bestPlayer.toPrint();
+
+    </script>
+</body>
+</html>

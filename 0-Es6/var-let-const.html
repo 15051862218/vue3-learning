@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>var局限性</title>
+  </head>
+  <body>
+    <button>测试按钮1</button>
+    <button>测试按钮2</button>
+    <button>测试按钮3</button>
+    <script>
+        var btns=document.getElementsByTagName('button');
+      //这边循环里的let换成var就会执行错误选项,let定义的变量自带快级作用域
+        // for(let i=0;i<btns.length;i++){
+        //     btns[i].onclick = function(){
+        //         console.log("点击了第"+(i+1)+"个按钮");
+        //     }
+        for(var i=0;i<btns.length;i++){
+          (function (i){
+            btns[i].onclick=function(){
+              console.log("点击了第"+(i+1)+"个按钮")
+            }
+          
+        })(i)
+      }
+      //闭包函数解决
+
+      const a=10;//定义常量，再加10就会报错，输出加10就不会报错
+      // a+=10
+      console.log(a+10);
+    </script>
+  </body>
+</html>

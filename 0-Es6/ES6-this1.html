@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对象的this指针</title>
+</head>
+<body>
+    <script>
+         class Player{
+            constructor(name,age){
+                this.name=name;
+                this.age=age;
+            }
+            toPrint(){
+                console.log(this.name+"-----"+this.age);
+            }
+        }
+        var play1=new Player("james",45);
+        play1.toPrint();
+//在对象中，this指向的就是对象本僧。this可以应用对象属性和方法。
+    </script>
+</body>
+</html>
