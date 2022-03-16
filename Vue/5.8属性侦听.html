@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        let app = Vue.createApp({
+            data() {
+            return {
+                player:{
+                    firstName:"",
+                    lastName:"",
+                    fullName:"",
+                }
+            };
+            },
+            created() {
+              
+            },
+            watch:{
+                player:{
+                    hander(newValue,oldValue){
+                        console.log("hander被调用");
+                        // this.player.fullName = newValue.firstName+" "+oldValue.lastName;
+                        this.fullName="默认名字",
+                    },
+                    // 深度侦听
+                    deep:true,
+                    //页面加载完毕就出发hander（数据初始化）
+                    immediate:true,
+                
+                },
+            },
+            mounted() {
+                player:{
+
+                }
+            },
+            methods: {
+                
+            },
+        });
+        let vm = app.mount('#app');
+    </script>
+</body>
+
+<html>

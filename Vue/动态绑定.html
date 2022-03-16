@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .back{
+            width:800px;
+            height: 400px;
+
+}
+    </style>
+    
+</head>
+
+<body>
+    <div id="app">
+        <h2 :style="{'color': 'red', 'font-size' : fontSize + 'px'}">sdasdasda</h2>
+        <div class="back" :style="{'background-color' : background}"> 
+            <button :style="{'color' : fontColor}" @click="change"> 变色</button>
+            <button @click="addF">变大</button>
+        </div>
+
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        let app = Vue.createApp({
+            data() {
+            return {
+                fontSize: 20 ,
+                background: 'black',
+                fontColor: 'pink'
+            };
+            },
+            created() {
+                
+            },
+            mounted() {
+                
+            },
+            methods: {
+                addF(){
+                    this.fontSize++
+                },
+                change(){
+                    this.background = this.background === 'black' ? 'red' : 'black'
+                    // this.fontColor = this.fontColor ==='pink' ? 'black' : 'pink'
+                }
+            },
+        });
+        let vm = app.mount('#app');
+    </script>
+</body>
+
+<html>
