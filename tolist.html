@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>简易版Vue3 TodoList</title>
+    <script src="https://unpkg.com/vue@3.2.31/dist/vue.global.js"></script>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-plus@2.1.8/dist/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-plus@2.1.8/dist/index.full.js"></script>
+    <style>
+        .container{
+            width: 80%;
+            margin: 0 auto;
+        }
+        hr {
+            border: 1px dashed #ccc;
+        }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div class="container">
+        <!-- <input :value="inputValue"  @input="handleInputChange" /> -->
+        <el-input  v-model=" inputValue" @input="handleInputChange"  style="width: 180px; " rows="1"> </el-input>
+        
+
+        <!-- <button @click="handleClick">新增</button> -->
+        <el-button type="primary" @click="handleClick">新增</el-button>
+        <el-button type="danger" @click="handleClick2">搜索</el-button>
+        <!-- <hr> -->
+        <!-- <p>{{inputValue}}</p>
+        <h3>代办事项列表</h3>
+        <ul>
+          <li v-for="(item,index) in list" :key="index">{{item}}</li>
+        </ul> -->
+        <hr>
+        <el-table :data="list" stripe style="width: 200px" @selection-change="handleSelectionChange">
+            <el-table-column type="selection" width="50px"></el-table-column>
+           
+            <el-table-column prop="content" label="待办事项" width="200px" />
+          
+          </el-table>
+          <div style="margin-top:20px;">
+                <el-button type="danger" @click="deleteSelectionItem">
+                    删除
+                </el-button>
+          </div>
+      </div>
+    </div>
+  </body>
+
+
+  <script>
+    //文本框相关逻辑
+    const useInputEffect = () => {
+      const { ref } = Vue;
+      const inputValue = ref("");
+      //把inputValue更改为用户文本框输入的值
+      const handleInputChange = (e) => {
+        inputValue.value = e;
+      };
+      return {
+        inputValue,
+        handleInputChange,
+      };
+    };
+
+    //代办事项列表相关逻辑
+    const useListEffect = () => {
+        let itemId = 0;
+      const { reactive ,toRefs} = Vue;
+      let listObj = reactive({list:[]});
+      let {list} = toRefs(listObj);
+      let multipleSelection  = reactive([]);
+      const handleAddItem = (item) =>{
+          listObj.list.push({
+              id:++itemId,
+              content:item.value,
+          });
+          item.value = "";
+      };
+      const handleSearch = (ele) => {
+          
+          listObj.list = listObj.list.filter(item => item.content == ele.value)
+          item.value = ''
+      };
+
+      const handleSelectionChange = (val) =>{
+          multipleSelection = val;
+      };
+
+      const deleteSelectionItem = () =>{
+          let list = listObj.list;
+          if(multipleSelection.length === 0){
+              alert("未选择任何代办事项");
+              return;
+          }
+          multipleSelection.forEach((selectedItem)=>{
+              list = list.filter((listItem)=> listItem.id != selectedItem.id);
+          });
+          listObj.list = list;
+      };
+      return {
+          list,
+          handleAddItem,
+          handleSelectionChange,
+          deleteSelectionItem,
+          handleSearch
+      }
+    }
+    
+    const {createApp}=Vue;
+   
+
+    const App = Vue.createApp({
+      setup() {
+        const { inputValue, handleInputChange } = useInputEffect();
+    const { list, handleAddItem,handleSelectionChange,deleteSelectionItem ,handleSearch} = useListEffect();
+
+    const handleClick = () => {
+        handleAddItem(inputValue);
+      };
+      const handleClick2 = () => {
+        handleSearch(inputValue);
+      };
+      
+     
+        return {
+          inputValue,
+          handleInputChange,
+          list,
+          handleAddItem,
+          handleClick,
+          deleteSelectionItem,
+          handleSelectionChange,
+          handleSearch,
+          handleClick2
+         
+
+        };
+      },
+    });
+    App.use(ElementPlus);
+    const vm = App.mount("#app");
+    // createApp(App).mount("#app");
+  </script>
+</html>
